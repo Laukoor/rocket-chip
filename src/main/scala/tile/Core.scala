@@ -55,6 +55,9 @@ trait CoreParams {
   val traceHasWdata: Boolean
   val xLen: Int
   val pgLevels: Int
+  // TEA and tracedoctor Addons
+  def traceDoctorWidth: Int = 0
+  // --------------------------
   def traceCustom: Option[Data] = None
   def customIsaExt: Option[String] = None
   def customCSRs(implicit p: Parameters): CustomCSRs = new CustomCSRs

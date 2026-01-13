@@ -95,6 +95,9 @@ class TLBResp(lgMaxSize: Int = 3)(implicit p: Parameters) extends CoreBundle()(p
   /** size/cmd of request that generated this response*/
   val size = UInt(log2Ceil(lgMaxSize + 1).W)
   val cmd = UInt(M_SZ.W)
+  // TEA addons
+  val tlb_miss = Bool()
+  val ptw_fired = Bool()
 
 }
 
@@ -658,6 +661,10 @@ class TLB(instruction: Boolean, lgMaxSize: Int, cfg: TLBConfig)(implicit edge: T
     val offset = Mux(io.resp.gpa_is_pte, r_gpa(pgIdxBits-1, 0), io.req.bits.vaddr(pgIdxBits-1, 0))
     Cat(page, offset)
   }
+  // TEA Addons -----------
+  io.resp.tlb_miss := usingVM.B && tlb_miss
+  io.resp.ptw_fired := usingVM.B && io.req.fire && tlb_miss
+  // ----------------------
 
   io.ptw.req.valid := state === s_request
   io.ptw.req.bits.valid := !io.kill
