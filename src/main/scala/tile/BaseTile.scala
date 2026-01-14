@@ -12,7 +12,7 @@ import org.chipsalliance.diplomacy.bundlebridge._
 
 import freechips.rocketchip.resources.{PropertyMap, PropertyOption, ResourceReference, DTSTimebase}
 import freechips.rocketchip.interrupts.{IntInwardNode, IntOutwardNode}
-import freechips.rocketchip.rocket.{ICacheParams, DCacheParams, BTBParams, ASIdBits, VMIdBits, TraceAux, BPWatch}
+import freechips.rocketchip.rocket.{ICacheParams, DCacheParams, BTBParams, ASIdBits, VMIdBits, TraceAux, BPWatch, TraceDoctor}
 import freechips.rocketchip.subsystem.{
   HierarchicalElementParams, InstantiableHierarchicalElementParams, HierarchicalElementCrossingParamsLike,
   CacheBlockBytes, SystemBusKey, BaseHierarchicalElement, InsertTimingClosureRegistersOnHartIds, BaseHierarchicalElementModuleImp
