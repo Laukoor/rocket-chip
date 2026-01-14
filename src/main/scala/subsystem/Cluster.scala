@@ -14,6 +14,7 @@ import freechips.rocketchip.prci.{ClockCrossingType, NoCrossing, ClockSinkParame
 import freechips.rocketchip.tile.{RocketTile, NMI, TraceBundle}
 import freechips.rocketchip.tilelink.TLWidthWidget
 import freechips.rocketchip.trace.TraceCoreInterface
+import freechips.rocketchip.rocket.TraceDoctor
 
 import scala.collection.immutable.SortedMap
 
@@ -84,6 +85,7 @@ class Cluster(
   lazy val tileResetVectorNodes = totalTileIdList.map { i => (i, BundleBridgeIdentityNode[UInt]()) }.to(SortedMap)
   lazy val traceCoreNodes = totalTileIdList.map { i => (i, BundleBridgeIdentityNode[TraceCoreInterface]()) }.to(SortedMap)
   lazy val traceNodes = totalTileIdList.map { i => (i, BundleBridgeIdentityNode[TraceBundle]()) }.to(SortedMap)
+  lazy val traceDoctorNodes = totalTileIdList.map { i => (i, BundleBridgeIdentityNode[TraceDoctor]()) }.to(SortedMap)
 
   // TODO fix: shouldn't need to connect dummy notifications
   tileHaltXbarNode := NullIntSource()
