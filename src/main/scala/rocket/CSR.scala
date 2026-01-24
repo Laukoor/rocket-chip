@@ -230,6 +230,7 @@ class TracedInstruction(implicit p: Parameters) extends CoreBundle {
   val cause = UInt(xLen.W)
   val tval = UInt((coreMaxAddrBits max iLen).W)
   val wdata = Option.when(traceHasWdata)(UInt((vLen max xLen).W))
+  val psv = UInt(10.W)  // Performance Signature Vector (9-bit PSV + 1-bit checksum)
 }
 
 class TraceAux extends Bundle {
