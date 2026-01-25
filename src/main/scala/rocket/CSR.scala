@@ -1628,6 +1628,8 @@ class CSRFile(
     t.interrupt := cause(xLen-1)
     t.tval := io.tval
     t.wdata.foreach(_ := DontCare)
+    // BYPASS Addon
+    t.psv := 0.U  // PSV will be populated at core level
   }
 
   def chooseInterrupt(masksIn: Seq[UInt]): (Bool, UInt) = {
